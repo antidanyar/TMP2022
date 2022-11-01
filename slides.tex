@@ -1,0 +1,387 @@
+\documentclass[xcolor=table]{beamer}
+
+\useinnertheme{metropolis}
+\useoutertheme{metropolis}
+\usecolortheme{metropolis}
+\usefonttheme{professionalfonts}         % Use metropolis theme
+
+\usepackage{fontspec}
+\setsansfont{Fira Sans Light}
+\setmonofont{Fira Mono}
+\setmainfont{Fira Sans Light}
+
+\usepackage[bibstyle=unified, citestyle=unified, backend=biber]{biblatex}
+\addbibresource{fdsl.bib}
+
+\usepackage{longtable}
+\usepackage{tipa}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{tikz-qtree}
+\usepackage{expex}
+\usepackage[normalem]{ulem}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{etoolbox}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{subfig}
+\usepackage{mathabx}
+\usepackage{hyperref}
+
+\usetikzlibrary{matrix}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{tikzmark}
+\usetikzlibrary{decorations.shapes}
+
+\tikzset{mytree/.style={baseline=(top.base),
+level distance=2.5em, sibling distance=4em, align=center,
+parent anchor=south, child anchor=south, anchor=north}}
+
+	\hypersetup{
+		colorlinks=true,
+		linkcolor=black,
+		citecolor=magenta,
+		filecolor=black,
+    		urlcolor=black,
+	}
+
+\lingset{numoffset=1ex, belowglpreambleskip=0ex, aboveglftskip=0ex, belowexskip=2ex, aboveexskip=2ex} % gloss formatting
+
+
+\renewcommand*{\bibfont}{\small}
+\setbeamertemplate{bibliography item}{}
+
+
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \usebeamerfont{title}\insertsectionhead\par%
+  \vfill
+  \end{frame}
+}
+
+
+\title{F=PL синкретизм и дефолтный род в шугнанском языке}
+\date{ТМП 13.10.2022}
+\author[shortname]{Данияр Касенов \inst{1} \and Александр Сергиенко \inst{2} \and Артём Бадеев \inst{3}}
+\institute[shortinst]{\inst{1},\inst{2} НУЛ по формальным моделям в лингвистике ВШЭ, МГУ \and \inst{3} ИКВИА ВШЭ}
+
+\begin{document}
+
+\maketitle
+
+\section{Введение}
+
+\begin{frame}{О докладе}
+
+	\begin{itemize}
+		\item Цель доклада -- дать анализ синкретизму F.SG=M/F.PL в согласовании в шугнанском языке
+		\item Также будет показано, чем шугнанский отличается от других языков с таким синкретизмом
+		\item Исследование поддержано грантом РФФИ №20-512-26004 ``Морфология согласования"
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Проблема}
+
+\begin{table}[h]
+\centering
+\caption{Спряжение глагола \textit{sitow} `остаться' в перфекте}
+\begin{tabular}{lll}
+   & M                         & F                         \\
+SG & suδǰ                        & \cellcolor[HTML]{FCFF2F}sic \\
+PL & \cellcolor[HTML]{FFFE65}sic & \cellcolor[HTML]{FCFF2F}sic
+\end{tabular}
+\end{table}
+
+\end{frame}
+
+\begin{frame}{Проблема}
+
+\begin{table}[h]
+\centering
+\caption{Спряжение глагола \textit{sitow} `остаться' в прошедшем}
+\begin{tabular}{lll}
+   & M                         & F                         \\
+SG & sut                      & \cellcolor[HTML]{FCFF2F}sat \\
+PL & \cellcolor[HTML]{FFFE65}sat & \cellcolor[HTML]{FCFF2F}sat
+\end{tabular}
+\end{table}
+
+\end{frame}
+
+\begin{frame}{Проблема}
+\begin{table}[h]
+\centering
+\caption{Спряжение глагола \textit{vidow} `быть' в перфекте}
+\begin{tabular}{lll}
+   & M                         & F                         \\
+SG & vuδǰ                        & \cellcolor[HTML]{FCFF2F}vic \\
+PL & \cellcolor[HTML]{FFFE65}vic & \cellcolor[HTML]{FCFF2F}vic
+\end{tabular}
+\end{table}
+
+\end{frame}
+
+\begin{frame}{Проблема}
+
+\begin{table}[h]
+\centering
+\caption{Спряжение глагола \textit{vidow} `быть' в прошедшем}
+\begin{tabular}{lll}
+   & M                         & F                         \\
+SG & vud                     & \cellcolor[HTML]{FCFF2F}vad \\
+PL & \cellcolor[HTML]{FFFE65}vad & \cellcolor[HTML]{FCFF2F}vad
+\end{tabular}
+\end{table}
+
+\end{frame}
+
+\begin{frame}{Проблема}
+	
+	Вывод: форма M.SG самая маркированная (что необычно!)
+
+	Синкретизм F=PL
+	
+\end{frame}
+
+\begin{frame}{Дальше}
+
+	(a) Теоретические подходы к синкретизму в дистрибутивной морфологии
+
+	(б) Синкретизм F=PL не в шугнанском
+
+\end{frame}
+
+\section{Теоретические подходы к синкретизму}
+
+\begin{frame}{DM: введение}
+
+	\begin{itemize}
+		\item Реализационная модель морфологии: синтаксическая структура (полностью абстрактная) превращается в морфонологические реперезентации путём межмодулярного перевода (inter-modular translation)
+
+		\item Реализация структуры идёт по терминалам в контекстах
+
+		\item Имеются морфологически-специфичные операции над признаками
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}{DM: пример анализа}
+
+	Спряжение в английском: I/we/you/they walk, he/she/it walk-s 
+
+	\pex Правила лексической вставки
+		\a T $\leftrightarrow$ /-s/ /\_\_Agr[3,\textsc{sg}]
+		\a T $\leftrightarrow$ /-$\emptyset$/
+	\xe
+
+\end{frame}
+
+\begin{frame}{Как делать синкретизм в DM}
+
+	Вариант 1: недоспецификация в правилах (сделать так, чтобы одно правило подходило в нескольких случаях)
+
+	Иногда это не подходит: если синкретизм систематический
+
+\end{frame}
+
+\begin{frame}{Синкретизм согласования в немецком}
+
+	\begin{table}[h]
+\centering
+\caption{Спряжение в немецком глагола \textit{trinken} `пить'}
+\begin{tabular}{lll}
+   & Sg                        & Pl                         \\
+1 & trink-e               & \cellcolor[HTML]{FCFF2F}trink-en \\
+2 & trink-st & trink-et \\
+3 & trink-t & \cellcolor[HTML]{FCFF2F}trink-en
+\end{tabular}
+\end{table}
+
+\end{frame}
+
+\begin{frame}{Синкретизм согласования в немецком}
+
+	\begin{table}[h]
+\centering
+\caption{Спряжение в немецком глагола \textit{trinken} `пить'}
+\begin{tabular}{lll}
+   & Sg                        & Pl                         \\
+1 & bin         & \cellcolor[HTML]{FCFF2F}sind \\
+2 & bist & seid \\
+3 & ist & \cellcolor[HTML]{FCFF2F}sind
+\end{tabular}
+\end{table}
+
+\end{frame}
+
+\begin{frame}{Операция обеднения}
+
+	Необходимо совпадение правил лексической вставки как для регулярных, так и иррегулярных глаголов
+
+	Более общее решение: нейтрализация оппозиции 1vs3 в множественном числе
+
+	Обеднение: [1]/[3] $\rightarrow$ $\emptyset$ /\_\_[+\textsc{pl}]
+
+\end{frame}
+
+\section{Синкретизм F=PL вне шугнанского}
+
+\begin{frame}{Данные языка сидаама}
+
+	\begin{table}[h]
+\centering
+\caption{Согласовательные маркеры в сидаама в перфекте}
+\begin{tabular}{lll}
+   & M                         & F                         \\
+SG & -í                & \cellcolor[HTML]{FCFF2F}-tú \\
+PL & \cellcolor[HTML]{FFFE65}-tú & \cellcolor[HTML]{FCFF2F}-tú
+\end{tabular}
+\end{table}
+	
+\end{frame}
+
+\begin{frame}{Анализ Kramer, Teferra 2019}
+
+	(a): система двух родов $\Rightarrow$ [$\pm$\textsc{fem}]
+
+	(b): механизм обеднения, удаляющего синтаксическую вершину (уничтожение)
+
+	(b) необходимо, потому что просто удаление [\textsc{pl}] не подойдет для мужского рода в мн.ч.
+
+\end{frame}
+
+\begin{frame}{Анализ для сидаама}
+
+	Уничтожение: Agr[\textsc{+pl}] $\rightarrow$ $\emptyset$ /\_\_Asp[\textsc{+pfv}]
+
+	\pex Правила лексической вставки
+		\a Asp[\textsc{pfv}] $\leftrightarrow$ /-í/ /\_\_Agr[3][\textsc{-fem}]
+		\a Asp[\textsc{pfv}] $\leftrightarrow$ /-tú/
+	\xe
+
+	Следствие правил вставки: женский род появляется как дефолтный (при, например, отсутствии осмысленного Agr). Это предсказание подтверждается для сидаама, см. Kramer, Teferra 2019
+
+\end{frame}
+
+\section{Анализ шугнанского}
+
+\begin{frame}{Сидаама не шугнанский}
+
+	Можно было бы применить анализ Kramer, Teferra (2019) к шугнанскому
+
+	Но: в шугнанском дефолтный род не женский, а мужской!
+
+\end{frame}
+
+\begin{frame}{Согласование с сентенциальными актантами}
+
+	\ex
+		\begingl
+			\gla paxta δīvd 		ɣal tajor na-su-δǰ//
+			\glb хлопок собирать.\textsc{inf} 	ещё конец \textsc{neg}-стать-\textsc{pf.m}//
+			\glft ‘Сбор хлопка еще не закончился’ (Карамшоев 1963: 254)//
+		\endgl
+	\xe
+
+\end{frame}
+
+\begin{frame}{Пропозициональная анафора}
+
+	\ex
+		\begingl
+			\gla Fuk-aθ        	di   fam-en //       
+			\glb все-\textsc{adv}   \textsc{d2.m.sg.o} знать-\textsc{3pl}//
+			\glft `Все это знают.’//
+		\endgl
+	\xe
+
+\end{frame}
+
+\begin{frame}{Анализ шугнанского}
+
+	(a) Два бинарных признака [$\pm$\textsc{anim}][$\pm$\textsc{fem}]
+
+	(a') M=[+\textsc{anim}][--\textsc{fem}]; F=[+\textsc{anim}][+\textsc{fem}]
+
+	(b) Обеднение [+\textsc{anim}] $\rightarrow$ $\emptyset$ /\_\_[--\textsc{pl}][--\textsc{fem}]
+
+\end{frame}
+
+\begin{frame}{Лексическая вставка}
+
+	\pex
+		\a T[\textsc{pf}] $\leftrightarrow$ /-ic/ /\_\_Agr[+\textsc{anim}]\\
+		\a T[\textsc{pf}] $\leftrightarrow$ /-uδǰ/\\
+		\a T[\textsc{pst}]$\leftrightarrow$ /-a-/ /\_\_ Agr[+\textsc{anim}]\\
+		\a T[\textsc{pst}] $\leftrightarrow$ /-u-/
+	\xe
+
+	Форма мужского рода ед.ч. дефолтная (elsewhere)
+
+\end{frame}
+
+\begin{frame}{Почему два признака для двух родов?}
+
+	Диахрония: в праиранском было три рода (два бинарных признака)
+
+	Следовательно, это диахронический остаток
+\end{frame}
+
+\begin{frame}{Почему именно такое обеднение}
+
+	Мы предполагаем, что наше правило обеднения отражает процесс слияния мужского рода со средним в процессе становления шугнанского из праиранского
+
+\end{frame}
+
+\begin{frame}{Слияние родов}
+
+	\begin{table}[]
+\centering
+\caption{Основы прилагательных в староавестийском языке [Beekes]}
+\label{tab:my-table}
+\begin{tabular}{llll}
+\multicolumn{2}{c}{M}            & \multicolumn{2}{c}{N} \\
+-a & 170 & -a       & 45         \\
+-u & 19  & -u       & 1+130      \\
+-i  & 4  & -i  & 1  \\
+-nt & 20 & -nt & 10 \\
+-n  & 35 &     &    \\
+-h  & 2  & -h  & 1  \\
+-C  & 7  &     &   
+\end{tabular}
+\end{table}
+
+\end{frame}
+
+
+\begin{frame}{Итого}
+
+ Мы дали анализ удивительного синкретизма в шугнанском используя два диахронически мотивированных допущения
+	
+	Спасибо за внимание!
+\end{frame}
+
+
+\begin{frame}{Множественное число}
+
+	Наш анализ предсказывает, что признаковая спецификация [\textsc{+pl}] (без [\textsc{+anim}]) будет реализовываться как \textsc{m.sg}
+
+	Возможный такой контекст: сочиненные сентенциальные актанты
+
+	\ex \begingl 
+		\gla Chilim          tizhd-at sharob                    birekht=en salomate-ra ziyùn sat//
+		\glb сигарета   курить-\textsc{add} алкоголь      пить=\textsc{3pl}   здоровье-\textsc{lat} вред стать.\textsc{pl}//
+		\glft `Курить сигареты и пить алкоголь стало вредно'//
+	\endgl \xe
+
+	Проблема? Зависит от анализа согласования с сентенциальными актантами
+
+\end{frame}
+
+\end{document}
